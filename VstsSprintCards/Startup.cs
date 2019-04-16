@@ -36,6 +36,8 @@ namespace VstsSprintCards
 
 			app.UseHttpsRedirection();
 			app.UseMvc();
+
+			var token = Configuration.GetSection("Data")["VstsAccessToken"];
 		}
 	}
 }
