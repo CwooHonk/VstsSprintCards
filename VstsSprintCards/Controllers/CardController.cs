@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CardDomain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace VstsSprintCards.Controllers
@@ -7,6 +8,13 @@ namespace VstsSprintCards.Controllers
 	[ApiController]
 	public class CardController : ControllerBase
 	{
+		IVstsCards _cards;
+
+		public CardController(IVstsCards cards)
+		{
+			_cards = cards;
+		}
+
 		// GET api/values
 		[HttpGet]
 		public ActionResult<IEnumerable<string>> Get()
@@ -37,6 +45,15 @@ namespace VstsSprintCards.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
+		}
+
+		// GET api/values
+		[HttpGet("DoWat")]
+		public ActionResult<IEnumerable<string>> DoWat()
+		{
+			_cards.Wat();
+
+			return new string[] { "value1", "value2" };
 		}
 	}
 }
